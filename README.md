@@ -1,0 +1,2 @@
+Simple scala app
+

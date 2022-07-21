@@ -2,11 +2,12 @@ import io.circe.generic.auto._
 import io.circe.parser.decode
 import io.circe.syntax._
 import scala.io.Source
+import java.io._
 
 import scala.language.implicitConversions
 
 
-object Main extends App {
+object DateFromUrlMain extends App {
 
   case class Name(common: String)
   case class Country(name: Name, capital: List[String], area: Double, region: String)
@@ -37,5 +38,8 @@ object Main extends App {
       case Left(value) => throw new RuntimeException(s"Parsing problems: $value")
   }
 
-  println(result)
+  val writer = new PrintWriter(new File("src/main/data/result.json" ))
+
+  writer.write(result)
+  writer.close()
 }
