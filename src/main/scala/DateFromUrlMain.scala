@@ -13,8 +13,6 @@ object DateFromUrlMain extends App {
   case class Country(name: Name, capital: List[String], area: Double, region: String)
   case class CountryDto(name: String, capital: String, area: Double)
 
-  val sourceUrl = "https://raw.githubusercontent.com/mledoze/countries/master/countries.json"
-
   def createDto(country: Country): CountryDto = {
     CountryDto(
       name = country.name.common,
@@ -22,6 +20,10 @@ object DateFromUrlMain extends App {
       area = country.area
     )
   }
+
+  val resultFileName = if (args.length > 0) args(0) else throw new RuntimeException("Need name of file for result")
+
+  val sourceUrl = "https://raw.githubusercontent.com/mledoze/countries/master/countries.json"
 
   val dataJson = Source.fromURL(sourceUrl)
   val decoded = decode[List[Country]](dataJson.mkString)

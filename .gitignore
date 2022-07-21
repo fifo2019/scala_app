@@ -67,3 +67,5 @@ jitwatch.out
 project/**/metals.sbt
 
 .bsp
+/src/main/data/*
+!/src/main/data/README.md
